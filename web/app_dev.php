@@ -2,6 +2,9 @@
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Debug\Debug;
+use App\Kernel;
+use App\CacheKernel;
+//use Symfony\Component\HttpKernel\Kernel;
 
 // If you don't want to setup permissions the proper way, just uncomment the following PHP line
 // read http://symfony.com/doc/current/book/installation.html#checking-symfony-application-configuration-and-setup
@@ -22,8 +25,12 @@ if (isset($_SERVER['HTTP_CLIENT_IP'])
 $loader = require __DIR__.'/../app/autoload.php';
 Debug::enable();
 
-$kernel = new AppKernel('dev', true);
-$kernel->loadClassCache();
+//$kernel = new AppKernel('dev', true);
+//$kernel->loadClassCache();
+$kernel = new App\Kernel($_SERVER['APP_ENV'], true);
+if ('prod' === $kernel->getEnvironment()) {
+    $kernel = new CacheKernel($kernel);
+}
 $request = Request::createFromGlobals();
 $response = $kernel->handle($request);
 $response->send();
