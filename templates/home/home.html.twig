@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SnowTricks{% endblock %}
+{% block javascripts %}
+<script src="{{ asset('js/buttonMoreTricks.js') }}"></script>
+{% endblock %}
+{% block body %}
+    <main>
+        <article class="" style="">
+            <section class="home-picture">
+            </section>
+            <section class="text-center slogan">
+                <h1 class="text-shadow-pop-bottom">Site communautaire SnowTricks </h1>
+            </section>
+            <section class="text-right mr-4">
+                <a href="#trick" class="button"><img src="../css/icons/arrow-down-square.svg" width="42" height="46" alt="Flower"></a>
+            </section>
+        </article>
+        {% if is_granted('ROLE_ADMIN') %}
+            <article class="ml-4 trick-add">
+                <a class="btn btn-outline-primary" href="{{ path('add_trick') }}"><img class="scale-up-center" src="../css/icons/plus.svg" width="40" height="40" alt="Flower"></a>
+            </article>
+        {% endif %}
+                   
+        <article class="text-right mr-3 button-up">
+           <p>hjfdbjhdfb</p>
+        </article>
+    </main>
+{% endblock %}
