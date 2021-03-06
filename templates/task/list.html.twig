@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+{% block title %}
+{% set title = 'list' %} 
+{{ title }}
+{% endblock %}
+{% block head %}
+    {{ parent() }} 
+{% endblock %}
+{% block body %}
+    <header>
+        <ul class="navbar navbar-dark bg-primary d-flex justify-content-around">  
+            <li class="nav-item active list-inline-item">
+            <a class="navbar-brand" href="/blog/">Accueil</a></li>
+        </ul>    
+    </header>
+{% endblock %} 
