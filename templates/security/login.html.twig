@@ -1,0 +1,33 @@
+{% extends "base.html.twig" %}
+{% block title %}
+{% set title = 'Connexion' %} 
+{{ title }}
+{% endblock %}
+{% block head %}
+    {{ parent() }} 
+{% endblock %}
+{% block body %}
+    <header>
+        <ul class="navbar navbar-dark bg-primary d-flex justify-content-around">  
+            <li class="nav-item active list-inline-item">
+            <a class="navbar-brand" href="/blog/">Accueil</a></li>
+        </ul>    
+    </header>
+    <p class="mx-4 my-5"> Se connecter</p>
+    <div class="mx-4 px-4 py-5 border border-primary">
+        <form class="form-group" action="/blog/connection" method="POST" style="margin-top: 50px;">
+            <div class="form-group">
+                <label>Pseudo : </label>
+                <input type="text" name="pseudo" class="form-control" ></br>
+            </div>
+            <div class="form-group">
+                <label>Mot de passe : </label>
+                <input type="password" name="motdepasse" class="form-control"></br>
+            </div>
+        <button class="btn btn-success" type="submit">
+            Se connecter
+        </button>            
+        <input type="hidden" name="token" id="token" value="" />
+        </form>
+    </div>
+{% endblock %} 
