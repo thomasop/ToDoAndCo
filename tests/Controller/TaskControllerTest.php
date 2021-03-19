@@ -44,7 +44,7 @@ class TaskControllerTest extends WebTestCase
     {
         $this->client = static::createClient();
 
-        $crawler = $this->client->request('GET', '/tasks/11/edit');
+        $crawler = $this->client->request('GET', '/tasks/12/edit');
         static::assertEquals(
             Response::HTTP_OK,
             $this->client->getResponse()->getStatusCode()
@@ -62,7 +62,7 @@ class TaskControllerTest extends WebTestCase
     {
         $this->client = static::createClient();
 
-        $crawler = $this->client->request('GET', '/tasks/11/toggle');
+        $crawler = $this->client->request('GET', '/tasks/12/toggle');
         static::assertEquals(
             302,
             $this->client->getResponse()->getStatusCode()
@@ -78,7 +78,7 @@ class TaskControllerTest extends WebTestCase
     {
         $this->client = static::createClient();
 
-        $test = $this->client->request('GET', '/tasks/11/delete');
+        $test = $this->client->request('GET', '/tasks/12/delete');
         static::assertEquals(
             302,
             $this->client->getResponse()->getStatusCode()
