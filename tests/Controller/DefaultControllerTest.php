@@ -18,6 +18,6 @@ class DefaultControllerTest extends WebTestCase
         static::assertEquals(
             Response::HTTP_OK,
             $this->client->getResponse()->getStatusCode()
-          );
+        );
     }
 }

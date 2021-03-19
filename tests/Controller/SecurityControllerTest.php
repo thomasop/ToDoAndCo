@@ -9,14 +9,14 @@ class SecurityControllerTest extends WebTestCase
 {
     private $client = null;
   
-  public function testSecurityIsUp()
-  {
-    $this->client = static::createClient();
-    $this->client->request('GET', '/login');
+    public function testSecurityIsUp()
+    {
+        $this->client = static::createClient();
+        $this->client->request('GET', '/login');
     
-    static::assertEquals(
-      Response::HTTP_OK,
-      $this->client->getResponse()->getStatusCode()
-    );
-  }
+        static::assertEquals(
+            Response::HTTP_OK,
+            $this->client->getResponse()->getStatusCode()
+        );
+    }
 }

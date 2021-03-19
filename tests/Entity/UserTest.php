@@ -6,8 +6,6 @@ use App\Entity\User;
 use PHPUnit\Framework\TestCase;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
-
-
 class UserTest extends KernelTestCase
 {
 
@@ -16,14 +14,14 @@ class UserTest extends KernelTestCase
      *
      * @return void
      */
-	public function testUser()
-	{
+    public function testUser()
+    {
         $user = new User();
         $user->setUsername("testname");
         $user->setPassword("testpassword");
         $user->setEmail("tdss33@hotmail.com");
-		self::bootKernel();
-		$error = self::$container->get('validator')->validate($user);
-		$this->assertCount(0, $error);
-	}
+        self::bootKernel();
+        $error = self::$container->get('validator')->validate($user);
+        $this->assertCount(0, $error);
+    }
 }
