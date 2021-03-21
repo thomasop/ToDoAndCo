@@ -19,25 +19,36 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-        for ($i = 1; $i < 5; ++$i) {
-            $task = new Task();
-            $task->setTitle('titre task_'.$i);
-            $task->setContent('contenu task_'.$i);
-            $manager->persist($task);
-        }
-
-        for ($i = 1; $i < 5; ++$i) {
-            $user = new User();
-            $user->setUsername('Nom_'.$i);
+        $user = new User();
+            $user->setUsername('Nom');
             $user->setPassword(
                 $this->passwordEncoder->encodePassword(
                     $user,
                     'Test1234?'
                 )
             );
-            $user->setEmail('mail_'.$i.'@gmail.com');
+            $user->setEmail('mail@gmail.com');
             $manager->persist($user);
+
+        for ($i = 1; $i < 5; ++$i) {
+            $task = new Task();
+            $task->setTitle('titre task_'.$i);
+            $task->setContent('contenu task_'.$i);
+            $task->setUser($user);
+            $manager->persist($task);
         }
+
+        $user = new User();
+        $user->setUsername('Nomtest');
+        $user->setPassword(
+            $this->passwordEncoder->encodePassword(
+                $user,
+                'Test1234?'
+            )
+        );
+        $user->setEmail('mailtest@gmail.com');
+        $manager->persist($user);
+        
         // $product = new Product();
         // $manager->persist($product);
 

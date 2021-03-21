@@ -1,7 +1,7 @@
 doctrine:
     dbal:
-        dbname:               mydatabase
-        host:                 127.0.0.1
+        dbname:               todoco
+        host:                 localhost
         port:                 8889
         user:                 root
         password:             root
@@ -9,7 +9,7 @@ doctrine:
         url:                  '%env(resolve:DATABASE_URL)%'
         unix_socket:          /Applications/MAMP/tmp/mysql/mysql.sock
         charset:              UTF8
-
+        override_url:         true
         # IMPORTANT: You MUST configure your server version,
         # either here or in the DATABASE_URL env var (see .env file)
         #server_version: '13'
