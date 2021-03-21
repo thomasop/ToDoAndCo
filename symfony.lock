@@ -69,6 +69,9 @@
     "laminas/laminas-zendframework-bridge": {
         "version": "1.2.0"
     },
+    "liip/test-fixtures-bundle": {
+        "version": "1.11.2"
+    },
     "sensio/framework-extra-bundle": {
         "version": "5.2",
         "recipe": {
@@ -220,16 +223,16 @@
         ]
     },
     "symfony/security-core": {
-        "version": "v4.4.19"
+        "version": "v4.4.20"
     },
     "symfony/security-csrf": {
-        "version": "v4.4.19"
+        "version": "v4.4.20"
     },
     "symfony/security-guard": {
-        "version": "v4.4.19"
+        "version": "v4.4.20"
     },
     "symfony/security-http": {
-        "version": "v4.4.19"
+        "version": "v4.4.20"
     },
     "symfony/stopwatch": {
         "version": "v4.4.19"

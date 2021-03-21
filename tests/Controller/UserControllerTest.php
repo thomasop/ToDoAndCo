@@ -2,16 +2,16 @@
 
 namespace Tests\App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HTTPFoundation\Response;
 use Liip\TestFixturesBundle\Test\FixturesTrait;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class UserControllerTest extends WebTestCase
 {
     use FixturesTrait;
-    
-    private $client = null;
 
+    private $client = null;
+    
     public function setUp(): void
 	{
         $fixtures = $this->loadFixtures([
@@ -21,8 +21,17 @@ class UserControllerTest extends WebTestCase
 
     public function testListAction()
     {
+        self::ensureKernelShutdown();
         $this->client = static::createClient();
 
+        $crawler = $this->client->request('GET', '/login');
+        $form = $crawler->selectButton('Se connecter')->form();
+        $crawler = $this->client->submit($form, [
+            'username' => 'test',
+            'password' => 'Test1234?'
+        ]);
+        $crawler = $this->client->followRedirect();
+       $this->assertEquals(1, $crawler->filter('h1')->count());
         $crawler = $this->client->request('GET', '/users');
         static::assertEquals(
             Response::HTTP_OK,
@@ -32,8 +41,17 @@ class UserControllerTest extends WebTestCase
 
     public function testCreateAction()
     {
+        self::ensureKernelShutdown();
         $this->client = static::createClient();
 
+        $crawler = $this->client->request('GET', '/login');
+        $form = $crawler->selectButton('Se connecter')->form();
+        $crawler = $this->client->submit($form, [
+            'username' => 'test',
+            'password' => 'Test1234?'
+        ]);
+        $crawler = $this->client->followRedirect();
+       $this->assertEquals(1, $crawler->filter('h1')->count());
         $crawler = $this->client->request('GET', '/users/create');
         static::assertEquals(
             Response::HTTP_OK,
@@ -53,18 +71,27 @@ class UserControllerTest extends WebTestCase
 
     public function testEditAction()
     {
+        self::ensureKernelShutdown();
         $this->client = static::createClient();
 
-        $crawler = $this->client->request('GET', '/users/5/edit');
+        $crawler = $this->client->request('GET', '/login');
+        $form = $crawler->selectButton('Se connecter')->form();
+        $crawler = $this->client->submit($form, [
+            'username' => 'test',
+            'password' => 'Test1234?'
+        ]);
+        $crawler = $this->client->followRedirect();
+       $this->assertEquals(1, $crawler->filter('h1')->count());
+        $crawler = $this->client->request('GET', '/users/2/edit');
         static::assertEquals(
             Response::HTTP_OK,
             $this->client->getResponse()->getStatusCode()
         );
         $form = $crawler->selectButton('submit')->form();
-        $form['user[username]'] = rand(0, 10000).'Testuser';
-        $form['user[password][first]'] = 'Tpassword';
-        $form['user[password][second]'] = 'Tpassword';
-        $form['user[email]'] = rand(0, 10000).'email@gmail.com';
+        $form['user[username]'] = 'Testedit';
+        $form['user[password][first]'] = 'Test1234?';
+        $form['user[password][second]'] = 'Test1234?';
+        $form['user[email]'] = 'testok@gmail.com';
           
         $crawler = $this->client->submit($form);
         $crawler = $this->client->followRedirect();

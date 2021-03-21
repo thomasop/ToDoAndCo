@@ -21,6 +21,7 @@ class AppFixtures extends Fixture
     {
         $user = new User();
             $user->setUsername('Nom');
+            $user->setRole("ROLE_ADMIN");
             $user->setPassword(
                 $this->passwordEncoder->encodePassword(
                     $user,
@@ -40,6 +41,7 @@ class AppFixtures extends Fixture
 
         $user = new User();
         $user->setUsername('Nomtest');
+        $user->setRole("ROLE_ADMIN");
         $user->setPassword(
             $this->passwordEncoder->encodePassword(
                 $user,
@@ -48,9 +50,6 @@ class AppFixtures extends Fixture
         );
         $user->setEmail('mailtest@gmail.com');
         $manager->persist($user);
-        
-        // $product = new Product();
-        // $manager->persist($product);
 
         $manager->flush();
     }

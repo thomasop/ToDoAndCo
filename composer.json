@@ -33,20 +33,21 @@
         "symfony/options-resolver": "4.4.*",
         "symfony/property-access": "4.4.*",
         "symfony/property-info": "4.4.*",
-        "symfony/security-bundle": "4.4.*",
         "symfony/twig-bundle": "4.4.*",
         "symfony/validator": "4.4.*",
         "symfony/yaml": "4.4.*",
         "twig/extra-bundle": "^2.12|^3.0",
         "twig/twig": "^2.12|^3.0",
         "symfony/form": "4.4.*",
-        "symfony/css-selector": "4.4.*"
+        "symfony/css-selector": "4.4.*",
+        "symfony/security-bundle": "4.4.*"
     },
     "require-dev": {
         "symfony/maker-bundle": "^1.26",
         "symfony/browser-kit": "4.4.*",
         "doctrine/doctrine-fixtures-bundle": "^3.4",
-        "symfony/phpunit-bridge": "^5.2"
+        "symfony/phpunit-bridge": "^5.2",
+        "liip/test-fixtures-bundle": "^1.0.0"
     },
     "scripts": {
         "auto-scripts": {

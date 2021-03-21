@@ -40,6 +40,7 @@ class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $user->setRole("ROLE_ADMIN");
             $user->setPassword(
                 $this->passwordEncoder->encodePassword(
                     $user,
