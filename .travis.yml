@@ -4,7 +4,7 @@ php:
 services:
  - mysql
 before_install:
-  - mysql -e 'CREATE DATABASE IF NOT EXISTS todoco-test;'
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS test;'
 script:
    - composer install
    - php bin/phpunit
