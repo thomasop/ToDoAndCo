@@ -2,7 +2,7 @@ language: php
 php:
   - '7.3'
 services:
- - mysql
+  - mysql
 script:
    - composer install
    - php bin/console doctrine:database:create --env=test
