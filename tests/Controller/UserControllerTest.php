@@ -4,10 +4,21 @@ namespace Tests\App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HTTPFoundation\Response;
+use Liip\TestFixturesBundle\Test\FixturesTrait;
 
 class UserControllerTest extends WebTestCase
 {
+    use FixturesTrait;
+    
     private $client = null;
+
+    public function setUp(): void
+	{
+        $fixtures = $this->loadFixtures([
+            'App\DataFixtures\AppFixtures'
+        ])->getReferenceRepository();
+	}
+
     public function testListAction()
     {
         $this->client = static::createClient();
