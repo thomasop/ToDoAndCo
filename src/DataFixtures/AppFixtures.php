@@ -20,7 +20,7 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $user = new User();
-            $user->setUsername('Nom');
+            $user->setUsername('test');
             $user->setRoles(["ROLE_ADMIN"]);
             $user->setPassword(
                 $this->passwordEncoder->encodePassword(
