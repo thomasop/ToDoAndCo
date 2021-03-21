@@ -2,150 +2,172 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\UserRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * @ORM\Table("user")
- * @ORM\Entity
- * @UniqueEntity("email")
- * @UniqueEntity("username")
+ * @ORM\Entity(repositoryClass=UserRepository::class)
  */
 class User implements UserInterface
 {
-	/**
-	 * @ORM\Column(type="integer")
-	 * @ORM\Id
-	 * @ORM\GeneratedValue(strategy="AUTO")
-	 */
-	private $id;
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
+    private $id;
 
-	/**
-	 * @ORM\Column(type="string", length=25, unique=true)
-	 * @Assert\NotBlank(message="Vous devez saisir un nom d'utilisateur.")
-	 */
-	private $username;
+    /**
+     * @ORM\Column(type="string", length=180, unique=true)
+     */
+    private $username;
 
-	/**
-	 * @ORM\Column(type="string", length=100)
-	 */
-	private $password;
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
 
-	/**
-	 * @ORM\Column(type="string", length=60, unique=true)
-	 * @Assert\NotBlank(message="Vous devez saisir une adresse email.")
-	 * @Assert\Email(message="Le format de l'adresse n'est pas correcte.")
-	 */
-	private $email;
+    /**
+     * @var string The hashed password
+     * @ORM\Column(type="string")
+     */
+    private $password;
 
-	/**
-	 * @ORM\OneToMany(targetEntity="App\Entity\Task", mappedBy="user", orphanRemoval=true)
-	 */
-	private $tasks;
+    /**
+     * @ORM\Column(type="string", length=60, unique=true)
+     * @Assert\NotBlank(message="Vous devez saisir une adresse email.")
+     * @Assert\Email(message="Le format de l'adresse n'est pas correcte.")
+     */
+    private $email;
 
-	/**
-	 * @ORM\Column(type="string", length=255)
-	 */
-	private $role;
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Task", mappedBy="user", orphanRemoval=true)
+     */
+    private $tasks;
 
-	public function __construct()
-	{
-		$this->tasks = new ArrayCollection();
-	}
+    public function __construct()
+    {
+        $this->tasks = new ArrayCollection();
+    }
+    
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
 
-	public function getId()
-	{
-		return $this->id;
-	}
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUsername(): string
+    {
+        return (string) $this->username;
+    }
 
-	public function getUsername()
-	{
-		return $this->username;
-	}
+    public function setUsername(string $username): self
+    {
+        $this->username = $username;
 
-	public function setUsername($username)
-	{
-		$this->username = $username;
-	}
+        return $this;
+    }
 
-	public function getSalt()
-	{
-		return null;
-	}
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
 
-	public function getPassword()
-	{
-		return $this->password;
-	}
+        return array_unique($roles);
+    }
 
-	public function setPassword($password)
-	{
-		$this->password = $password;
-	}
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
 
-	public function getEmail()
-	{
-		return $this->email;
-	}
+        return $this;
+    }
 
-	public function setEmail($email)
-	{
-		$this->email = $email;
-	}
+    /**
+     * @see UserInterface
+     */
+    public function getPassword(): string
+    {
+        return (string) $this->password;
+    }
 
-	public function getRoles()
-	{
-		return array('ROLE_USER');
-	}
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
 
-	public function eraseCredentials()
-	{
-	}
+        return $this;
+    }
 
-	/**
-	 * @return Collection|Task[]
-	 */
-	public function getTasks(): Collection
-	{
-		return $this->tasks;
-	}
+    public function getEmail()
+    {
+        return $this->email;
+    }
 
-	public function addTask(Task $task): self
-	{
-		if (!$this->tasks->contains($task)) {
-			$this->tasks[] = $task;
-			$task->setUser($this);
-		}
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
 
-		return $this;
-	}
+    /**
+     * @return Collection|Task[]
+     */
+    public function getTasks(): Collection
+    {
+        return $this->tasks;
+    }
 
-	public function removeTask(Task $task): self
-	{
-		if ($this->tasks->contains($task)) {
-			$this->tasks->removeElement($task);
-			// set the owning side to null (unless already changed)
-			if ($task->getUser() === $this) {
-				$task->setUser(null);
-			}
-		}
+    public function addTask(Task $task): self
+    {
+        if (!$this->tasks->contains($task)) {
+            $this->tasks[] = $task;
+            $task->setUser($this);
+        }
 
-		return $this;
-	}
+        return $this;
+    }
 
-	public function getRole(): ?string
-	{
-		return $this->role;
-	}
+    public function removeTask(Task $task): self
+    {
+        if ($this->tasks->contains($task)) {
+            $this->tasks->removeElement($task);
+            // set the owning side to null (unless already changed)
+            if ($task->getUser() === $this) {
+                $task->setUser(null);
+            }
+        }
 
-	public function setRole(string $role): self
-	{
-		$this->role = $role;
+        return $this;
+    }
+    
+    /**
+     * Returning a salt is only needed, if you are not using a modern
+     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
+     *
+     * @see UserInterface
+     */
+    public function getSalt(): ?string
+    {
+        return null;
+    }
 
-		return $this;
-	}
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
+    }
 }
