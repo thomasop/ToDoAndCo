@@ -1,4 +1,10 @@
 doctrine:
     dbal:
-        dbname:               main_test
-        url:                  '%env(resolve:DATABASE_URL)%'
+        dbname:               todocotest
+        host:                 127.0.0.1
+        port:                 8889
+        user:                 root
+        password:
+        driver:               pdo_mysql
+        unix_socket:          /tmp/mysql.sock
+
