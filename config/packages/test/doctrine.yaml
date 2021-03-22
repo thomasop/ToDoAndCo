@@ -7,4 +7,5 @@ doctrine:
         password:
         driver:               pdo_mysql
         unix_socket:          /tmp/mysql.sock
+        override_url:         true
 
