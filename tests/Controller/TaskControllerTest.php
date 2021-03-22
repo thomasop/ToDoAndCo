@@ -4,26 +4,15 @@ namespace Tests\App\Controller;
 
 use Symfony\Component\HTTPFoundation\Response;
 use Symfony\Component\Console\Input\StringInput;
-use Liip\TestFixturesBundle\Test\FixturesTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 
 class TaskControllerTest extends WebTestCase
 {
-    use FixturesTrait;
-
     private $client = null;
-
-    public function setUp(): void
-	{
-        $fixtures = $this->loadFixtures([
-            'App\DataFixtures\AppFixtures'
-        ])->getReferenceRepository();
-	}
 
     public function testListAction()
     {
-        self::ensureKernelShutdown();
         $this->client = static::createClient();
 
         $test = $this->client->request('GET', '/tasks');
