@@ -1,7 +1,7 @@
 doctrine:
     dbal:
         dbname:               mydatabase
-        host:                 127.0.0.1
+        host:                 localhost
         port:                 8889
         user:                 root
         password:             root

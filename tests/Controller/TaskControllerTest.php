@@ -35,7 +35,6 @@ class TaskControllerTest extends WebTestCase
 
     public function testCreateAction()
     {
-        self::ensureKernelShutdown();
         $this->client = static::createClient();
         $crawler = $this->client->request('GET', '/login');
         $form = $crawler->selectButton('Se connecter')->form();
