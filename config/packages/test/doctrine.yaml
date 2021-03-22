@@ -6,5 +6,5 @@ doctrine:
         user:                 root
         password:
         driver:               pdo_mysql
-        unix_socket:          /tmp/mysql.sock
+        unix_socket:          /Applications/MAMP/tmp/mysql/mysql.sock
 
