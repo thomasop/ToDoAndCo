@@ -2,9 +2,7 @@ doctrine:
     dbal:
         dbname:               todocotesttest
         host:                 127.0.0.1
-        port:                 8889
+        port:                 3306
         user:                 root
         password:
         driver:               pdo_mysql
-        unix_socket:          /Applications/MAMP/tmp/mysql/mysql.sock
-
