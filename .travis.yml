@@ -4,6 +4,9 @@ php:
 services:
   - mysql
 sudo: required
+before_install:
+    # Copy content from .env.travis to .env.test
+  - cp .env.travis .env.test
 install:
   - composer install --no-interaction
   - php bin/console doctrine:database:create --env=test
