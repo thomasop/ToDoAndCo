@@ -20,6 +20,7 @@ class UserTest extends KernelTestCase
         $user->setUsername("testname");
         $user->setPassword("testpassword");
         $user->setEmail("tdss33@hotmail.com");
+        $user->setRole("ROLE_ADMIN");
         self::bootKernel();
         $error = self::$container->get('validator')->validate($user);
         $this->assertCount(0, $error);

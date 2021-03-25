@@ -1,25 +1,11 @@
-{% extends "base.html.twig" %}
-{% block title %}
-{% set title = 'list' %} 
-{{ title }}
-{% endblock %}
-{% block head %}
-    {{ parent() }} 
-{% endblock %}
-{% block body %}
-    <header>
-        <ul class="navbar navbar-dark bg-primary d-flex justify-content-around">  
-            <li class="nav-item active list-inline-item">
-            <a class="navbar-brand" href="/blog/">Accueil</a></li>
-        </ul>    
-    </header>
-    {% for flash_message in app.session.flashBag.get('success') %}
-                        <div class="alert alert-success" role="alert">
-                            <strong>Superbe !</strong> {{ flash_message }}
-                        </div>
-                    {% endfor %}
+{% extends 'base.html.twig' %}
 
-    {% for task in tasks %}
+{% block header_img %}<img class="slide-image" src="{{ asset('img/todolist_content.jpg') }}" alt="todo list">{% endblock %}
+
+{% block body %}
+    <a href="{{ path('task_create') }}" class="btn btn-info pull-right">Créer une tâche</a>
+    <div class="row">
+        {% for task in tasks %}
         <div class="col-sm-4 col-lg-4 col-md-4">
             <div class="thumbnail">
                 <div class="caption">
@@ -35,6 +21,9 @@
                             {% if not task.isDone %}Marquer comme faite{% else %}Marquer non terminée{% endif %}
                         </button>
                     </form>
+                    <form action="{{ path('task_delete', {'id' : task.id }) }}">
+                        <button class="btn btn-danger btn-sm pull-right">Supprimer</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -43,4 +32,5 @@
                 Il n'y a pas encore de tâche enregistrée. <a href="{{ path('task_create') }}" class="btn btn-warning pull-right">Créer une tâche</a>
             </div>
         {% endfor %}
-{% endblock %} 
+    </div>
+{% endblock %}

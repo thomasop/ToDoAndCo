@@ -21,7 +21,6 @@ class UserControllerTest extends WebTestCase
 
     public function testListAction()
     {
-        self::ensureKernelShutdown();
         $this->client = static::createClient();
 
         $crawler = $this->client->request('GET', '/login');
@@ -41,7 +40,6 @@ class UserControllerTest extends WebTestCase
 
     public function testCreateAction()
     {
-        self::ensureKernelShutdown();
         $this->client = static::createClient();
 
         $crawler = $this->client->request('GET', '/login');
@@ -71,7 +69,6 @@ class UserControllerTest extends WebTestCase
 
     public function testEditAction()
     {
-        self::ensureKernelShutdown();
         $this->client = static::createClient();
 
         $crawler = $this->client->request('GET', '/login');

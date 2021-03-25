@@ -21,7 +21,7 @@ class AppFixtures extends Fixture
     {
         $user = new User();
             $user->setUsername('test');
-            $user->setRoles(["ROLE_ADMIN"]);
+            $user->setRole("ROLE_ADMIN");
             $user->setPassword(
                 $this->passwordEncoder->encodePassword(
                     $user,
@@ -41,7 +41,7 @@ class AppFixtures extends Fixture
 
         $user = new User();
         $user->setUsername('Nomtest');
-        $user->setRoles(["ROLE_ADMIN"]);
+        $user->setRole("ROLE_ADMIN");
         $user->setPassword(
             $this->passwordEncoder->encodePassword(
                 $user,

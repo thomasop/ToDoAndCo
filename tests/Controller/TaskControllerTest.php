@@ -60,7 +60,6 @@ class TaskControllerTest extends WebTestCase
 
     public function testEditAction()
     {
-        self::ensureKernelShutdown();
         $this->client = static::createClient();
         $crawler = $this->client->request('GET', '/login');
         $form = $crawler->selectButton('Se connecter')->form();
@@ -86,7 +85,6 @@ class TaskControllerTest extends WebTestCase
 
     public function testToggleAction()
     {
-        self::ensureKernelShutdown();
         $this->client = static::createClient();
         $crawler = $this->client->request('GET', '/login');
         $form = $crawler->selectButton('Se connecter')->form();
@@ -109,7 +107,6 @@ class TaskControllerTest extends WebTestCase
 
     public function testDeleteAction()
     {
-        self::ensureKernelShutdown();
         $this->client = static::createClient();
         $crawler = $this->client->request('GET', '/login');
         $form = $crawler->selectButton('Se connecter')->form();
