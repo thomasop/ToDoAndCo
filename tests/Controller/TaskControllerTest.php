@@ -49,7 +49,7 @@ class TaskControllerTest extends WebTestCase
             Response::HTTP_OK,
             $this->client->getResponse()->getStatusCode()
         );
-        $form = $crawler->selectButton('submit')->form();
+        $form = $crawler->selectButton('Ajouter')->form();
         $form['task[title]'] = 'Test Super titre de tache';
         $form['task[content]'] = 'Test Contenu de la supertache blablabla.';
           
@@ -75,7 +75,7 @@ class TaskControllerTest extends WebTestCase
             $this->client->getResponse()->getStatusCode()
         );
         
-        $form = $crawler->selectButton('submit')->form();
+        $form = $crawler->selectButton('Modifier')->form();
         $form['task[title]'] = 'Test edition';
         $form['task[content]'] = 'Test edition.';
         $crawler = $this->client->submit($form);

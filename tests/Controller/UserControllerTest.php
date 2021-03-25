@@ -56,7 +56,7 @@ class UserControllerTest extends WebTestCase
             $this->client->getResponse()->getStatusCode()
         );
 
-        $form = $crawler->selectButton('submit')->form();
+        $form = $crawler->selectButton('Ajouter')->form();
         $form['user[username]'] = rand(0, 10000).'Testuser';
         $form['user[password][first]'] = 'Tpassword';
         $form['user[password][second]'] = 'Tpassword';
@@ -84,7 +84,7 @@ class UserControllerTest extends WebTestCase
             Response::HTTP_OK,
             $this->client->getResponse()->getStatusCode()
         );
-        $form = $crawler->selectButton('submit')->form();
+        $form = $crawler->selectButton('Modifier')->form();
         $form['user[username]'] = 'Testedit';
         $form['user[password][first]'] = 'Test1234?';
         $form['user[password][second]'] = 'Test1234?';
