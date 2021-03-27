@@ -38,6 +38,20 @@ class AppFixtures extends Fixture
             $task->setUser($userTest);
             $manager->persist($task);
         }
+
+        $user = new User();
+        $user->setUsername('User');
+        $user->setRoles(['ROLE_USER']);
+        $user->setPassword(
+            $this->passwordEncoder->encodePassword(
+                $user,
+                'User'
+            )
+        );
+        $user->setEmail('user@gmail.com');
+
+        $manager->persist($user);
+
         $userAnon = new User();
         $userAnon->setUsername('UserAnon');
         $userAnon->setRoles(['ROLE_USER']);
