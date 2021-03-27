@@ -41,10 +41,10 @@ class Task
     private $isDone;
 
     /**
-	 * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="tasks")
-	 * @ORM\JoinColumn(nullable=false)
-	 */
-	private $user;
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="tasks")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
 
     public function __construct()
     {
@@ -98,14 +98,14 @@ class Task
     }
 
     public function getUser(): ?User
-	{
-		return $this->user;
-	}
+    {
+        return $this->user;
+    }
 
-	public function setUser(?User $user): self
-	{
-		$this->user = $user;
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
-		return $this;
-	}
+        return $this;
+    }
 }

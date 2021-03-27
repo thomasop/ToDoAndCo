@@ -4,22 +4,43 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Core\Security;
 
 class UserController extends AbstractController
 {
+    /**
+     * @var Security
+     */
+    private $security;
+
+    /**
+     * @var UserPasswordEncoderInterface
+     */
     private $passwordEncoder;
-    
-    public function __construct(
-        UserPasswordEncoderInterface $passwordEncoder
-    ) {
-        $this->passwordEncoder = $passwordEncoder;
+
+    /**
+     * @var User|null
+     */
+    private $actualUser;
+
+    /**
+     * @var AuthorizationCheckerInterface
+     */
+    private $authorization;
+
+    public function __construct(Security $security, UserPasswordEncoderInterface $userPasswordEncoderInterface, AuthorizationCheckerInterface $authorizationCheckerInterface)
+    {
+        $this->security = $security;
+        $this->passwordEncoder = $userPasswordEncoderInterface;
+        $this->actualUser = $this->security->getUser();
+        $this->authorization = $authorizationCheckerInterface;
     }
-    
+
     /**
      * @Route("/users", name="user_list")
      */

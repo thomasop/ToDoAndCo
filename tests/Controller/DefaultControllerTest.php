@@ -12,7 +12,14 @@ class DefaultControllerTest extends WebTestCase
     public function testIndex()
     {
         $this->client = static::createClient();
-
+        $crawler = $this->client->request('GET', '/login');
+        $form = $crawler->selectButton('Se connecter')->form();
+        $crawler = $this->client->submit($form, [
+            'username' => 'UserAnon',
+            'password' => 'UserAnon',
+        ]);
+        $crawler = $this->client->followRedirect();
+        $this->assertEquals(1, $crawler->filter('h1')->count());
         $this->client->request('GET', '/');
 
         static::assertEquals(

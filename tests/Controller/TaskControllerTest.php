@@ -2,30 +2,36 @@
 
 namespace Tests\App\Controller;
 
-use Symfony\Component\HTTPFoundation\Response;
 use Liip\TestFixturesBundle\Test\FixturesTrait;
-use Symfony\Component\Console\Input\StringInput;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Bundle\FrameworkBundle\Console\Application;
+use Symfony\Component\HTTPFoundation\Response;
 
 class TaskControllerTest extends WebTestCase
 {
     use FixturesTrait;
 
     private $client = null;
-    
+
     public function setUp(): void
-	{
+    {
         $fixtures = $this->loadFixtures([
-            'App\DataFixtures\AppFixtures'
+            'App\DataFixtures\AppFixtures',
         ])->getReferenceRepository();
-	}
+    }
 
     public function testListAction()
     {
-
         $this->client = static::createClient();
 
+        $this->client = static::createClient();
+        $crawler = $this->client->request('GET', '/login');
+        $form = $crawler->selectButton('Se connecter')->form();
+        $crawler = $this->client->submit($form, [
+            'username' => 'UserAnon',
+            'password' => 'UserAnon',
+        ]);
+        $crawler = $this->client->followRedirect();
+        $this->assertEquals(1, $crawler->filter('h1')->count());
         $test = $this->client->request('GET', '/tasks');
         static::assertEquals(
             Response::HTTP_OK,
@@ -39,11 +45,11 @@ class TaskControllerTest extends WebTestCase
         $crawler = $this->client->request('GET', '/login');
         $form = $crawler->selectButton('Se connecter')->form();
         $crawler = $this->client->submit($form, [
-            'username' => 'test',
-            'password' => 'Test1234?'
+            'username' => 'UserAnon',
+            'password' => 'UserAnon',
         ]);
         $crawler = $this->client->followRedirect();
-       $this->assertEquals(1, $crawler->filter('h1')->count());
+        $this->assertEquals(1, $crawler->filter('h1')->count());
         $crawler = $this->client->request('GET', '/tasks/create');
         static::assertEquals(
             Response::HTTP_OK,
@@ -52,7 +58,7 @@ class TaskControllerTest extends WebTestCase
         $form = $crawler->selectButton('Ajouter')->form();
         $form['task[title]'] = 'Test Super titre de tache';
         $form['task[content]'] = 'Test Contenu de la supertache blablabla.';
-          
+
         $crawler = $this->client->submit($form);
         $crawler = $this->client->followRedirect();
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
@@ -64,17 +70,17 @@ class TaskControllerTest extends WebTestCase
         $crawler = $this->client->request('GET', '/login');
         $form = $crawler->selectButton('Se connecter')->form();
         $crawler = $this->client->submit($form, [
-            'username' => 'test',
-            'password' => 'Test1234?'
+            'username' => 'UserAnon',
+            'password' => 'UserAnon',
         ]);
         $crawler = $this->client->followRedirect();
-       $this->assertEquals(1, $crawler->filter('h1')->count());
+        $this->assertEquals(1, $crawler->filter('h1')->count());
         $crawler = $this->client->request('GET', '/tasks/4/edit');
         static::assertEquals(
             Response::HTTP_OK,
             $this->client->getResponse()->getStatusCode()
         );
-        
+
         $form = $crawler->selectButton('Modifier')->form();
         $form['task[title]'] = 'Test edition';
         $form['task[content]'] = 'Test edition.';
@@ -89,11 +95,11 @@ class TaskControllerTest extends WebTestCase
         $crawler = $this->client->request('GET', '/login');
         $form = $crawler->selectButton('Se connecter')->form();
         $crawler = $this->client->submit($form, [
-            'username' => 'test',
-            'password' => 'Test1234?'
+            'username' => 'UserAnon',
+            'password' => 'UserAnon',
         ]);
         $crawler = $this->client->followRedirect();
-       $this->assertEquals(1, $crawler->filter('h1')->count());
+        $this->assertEquals(1, $crawler->filter('h1')->count());
         $crawler = $this->client->request('GET', '/tasks/4/toggle');
         static::assertEquals(
             302,
@@ -112,10 +118,10 @@ class TaskControllerTest extends WebTestCase
         $form = $crawler->selectButton('Se connecter')->form();
         $crawler = $this->client->submit($form, [
             'username' => 'test',
-            'password' => 'Test1234?'
+            'password' => 'Test1234?',
         ]);
         $crawler = $this->client->followRedirect();
-       $this->assertEquals(1, $crawler->filter('h1')->count());
+        $this->assertEquals(1, $crawler->filter('h1')->count());
         $crawler = $this->client->request('GET', '/tasks/4/delete');
         static::assertEquals(
             302,

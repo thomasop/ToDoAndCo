@@ -2,10 +2,10 @@
 
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -27,9 +27,9 @@ class User implements UserInterface
     private $username;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="json")
      */
-    private $role;
+    private $roles = [];
 
     /**
      * @var string The hashed password
@@ -53,7 +53,7 @@ class User implements UserInterface
     {
         $this->tasks = new ArrayCollection();
     }
-    
+
     public function getId(): ?int
     {
         return $this->id;
@@ -76,25 +76,17 @@ class User implements UserInterface
         return $this;
     }
 
-    /**
-     * @see UserInterface
-     */
-    public function getRoles()
-	{
-		return array('ROLE_USER');
-	}
+    public function getRoles(): array
+    {
+        return $this->roles;
+    }
 
-    public function getRole(): ?string
-	{
-		return $this->role;
-	}
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
 
-	public function setRole(string $role): self
-	{
-		$this->role = $role;
-
-		return $this;
-	}
+        return $this;
+    }
 
     /**
      * @see UserInterface
@@ -151,7 +143,7 @@ class User implements UserInterface
 
         return $this;
     }
-    
+
     /**
      * Returning a salt is only needed, if you are not using a modern
      * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.

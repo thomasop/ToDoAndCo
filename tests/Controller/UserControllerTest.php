@@ -2,22 +2,22 @@
 
 namespace Tests\App\Controller;
 
-use Symfony\Component\HTTPFoundation\Response;
 use Liip\TestFixturesBundle\Test\FixturesTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\HTTPFoundation\Response;
 
 class UserControllerTest extends WebTestCase
 {
     use FixturesTrait;
 
     private $client = null;
-    
+
     public function setUp(): void
-	{
+    {
         $fixtures = $this->loadFixtures([
-            'App\DataFixtures\AppFixtures'
+            'App\DataFixtures\AppFixtures',
         ])->getReferenceRepository();
-	}
+    }
 
     public function testListAction()
     {
@@ -27,10 +27,10 @@ class UserControllerTest extends WebTestCase
         $form = $crawler->selectButton('Se connecter')->form();
         $crawler = $this->client->submit($form, [
             'username' => 'test',
-            'password' => 'Test1234?'
+            'password' => 'Test1234?',
         ]);
         $crawler = $this->client->followRedirect();
-       $this->assertEquals(1, $crawler->filter('h1')->count());
+        $this->assertEquals(1, $crawler->filter('h1')->count());
         $crawler = $this->client->request('GET', '/users');
         static::assertEquals(
             Response::HTTP_OK,
@@ -46,10 +46,10 @@ class UserControllerTest extends WebTestCase
         $form = $crawler->selectButton('Se connecter')->form();
         $crawler = $this->client->submit($form, [
             'username' => 'test',
-            'password' => 'Test1234?'
+            'password' => 'Test1234?',
         ]);
         $crawler = $this->client->followRedirect();
-       $this->assertEquals(1, $crawler->filter('h1')->count());
+        $this->assertEquals(1, $crawler->filter('h1')->count());
         $crawler = $this->client->request('GET', '/users/create');
         static::assertEquals(
             Response::HTTP_OK,
@@ -61,7 +61,7 @@ class UserControllerTest extends WebTestCase
         $form['user[password][first]'] = 'Tpassword';
         $form['user[password][second]'] = 'Tpassword';
         $form['user[email]'] = rand(0, 10000).'email@gmail.com';
-          
+
         $crawler = $this->client->submit($form);
         $crawler = $this->client->followRedirect();
         static::assertResponseIsSuccessful();
@@ -75,10 +75,10 @@ class UserControllerTest extends WebTestCase
         $form = $crawler->selectButton('Se connecter')->form();
         $crawler = $this->client->submit($form, [
             'username' => 'test',
-            'password' => 'Test1234?'
+            'password' => 'Test1234?',
         ]);
         $crawler = $this->client->followRedirect();
-       $this->assertEquals(1, $crawler->filter('h1')->count());
+        $this->assertEquals(1, $crawler->filter('h1')->count());
         $crawler = $this->client->request('GET', '/users/2/edit');
         static::assertEquals(
             Response::HTTP_OK,
@@ -89,7 +89,7 @@ class UserControllerTest extends WebTestCase
         $form['user[password][first]'] = 'Test1234?';
         $form['user[password][second]'] = 'Test1234?';
         $form['user[email]'] = 'testok@gmail.com';
-          
+
         $crawler = $this->client->submit($form);
         $crawler = $this->client->followRedirect();
         static::assertResponseIsSuccessful();
