@@ -36,7 +36,7 @@
         </nav>
 
         <!-- Page Content -->
-        <div class="container">
+        <div id="container" class="container">
             <div class="row">
                 <div class="col-md-12">
                     {% if is_granted('ROLE_ADMIN') %}
@@ -48,7 +48,7 @@
                     {% endif %}  
 
                     {% if app.user %}
-                        <a href="http://localhost:8000/login" class="btn btn-danger pull-right">Se déconnecter</a>
+                        <a href="http://localhost:8000/logout" class="btn btn-danger pull-right">Se déconnecter</a>
                     {% endif %}
                     {% if 'homepage' != app.request.attributes.get('_route') and 'app_login' != app.request.attributes.get('_route') %}
                         <a href="{{ path('homepage') }}" class="btn btn-success btn-home pull-right">Accueil</a>
