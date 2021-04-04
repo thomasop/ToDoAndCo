@@ -70,8 +70,8 @@ class TaskControllerTest extends WebTestCase
         $crawler = $this->client->request('GET', '/login');
         $form = $crawler->selectButton('Se connecter')->form();
         $crawler = $this->client->submit($form, [
-            'username' => 'UserAnon',
-            'password' => 'UserAnon',
+            'username' => 'test',
+            'password' => 'Test1234?',
         ]);
         $crawler = $this->client->followRedirect();
         $this->assertEquals(1, $crawler->filter('h1')->count());
