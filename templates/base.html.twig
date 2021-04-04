@@ -49,10 +49,12 @@
 
                     {% if app.user %}
                         <a href="http://localhost:8000/logout" class="btn btn-danger pull-right">Se déconnecter</a>
+                    {% else %}
+                    <a href="{{ path('app_login') }}" class="btn btn-danger pull-right">Se connecter</a>
                     {% endif %}
                     {% if 'homepage' != app.request.attributes.get('_route') and 'app_login' != app.request.attributes.get('_route') %}
                         <a href="{{ path('homepage') }}" class="btn btn-success btn-home pull-right">Accueil</a>
-                    {% endif %}                                                              
+                    {% endif %}                                                             
                 </div>
             </div>
             <br>

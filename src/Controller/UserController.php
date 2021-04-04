@@ -4,12 +4,13 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 class UserController extends AbstractController
 {
@@ -43,14 +44,22 @@ class UserController extends AbstractController
 
     /**
      * @Route("/users", name="user_list")
+     * 
+     * Method - listAction
+     * @param UserRepository $userRepository
+     * @return Response
      */
-    public function listAction()
+    public function listAction(UserRepository $userRepository)
     {
-        return $this->render('user/list.html.twig', ['users' => $this->getDoctrine()->getRepository('App:User')->findAll()]);
+        return $this->render('user/list.html.twig', ['users' => $userRepository->findAll()]);
     }
 
     /**
      * @Route("/users/create", name="user_create")
+     * 
+     * Method - createAction
+     * @param Request $request
+     * @return Response
      */
     public function createAction(Request $request)
     {
@@ -81,6 +90,11 @@ class UserController extends AbstractController
 
     /**
      * @Route("/users/{id}/edit", name="user_edit")
+     * 
+     * Method - editAction
+     * @param Request $request
+     * @param User $user
+     * @return Response
      */
     public function editAction(User $user, Request $request)
     {

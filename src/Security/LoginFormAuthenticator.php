@@ -39,12 +39,20 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
         $this->passwordEncoder = $passwordEncoder;
     }
 
+    /**
+     * @param Request $request
+     * @return void
+     */
     public function supports(Request $request)
     {
         return self::LOGIN_ROUTE === $request->attributes->get('_route')
             && $request->isMethod('POST');
     }
 
+    /**
+     * @param Request $request
+     * @return void
+     */
     public function getCredentials(Request $request)
     {
         $credentials = [
@@ -60,6 +68,11 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
         return $credentials;
     }
 
+    /**
+     * @param [type] $credentials
+     * @param UserProviderInterface $userProvider
+     * @return void
+     */
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
         $token = new CsrfToken('authenticate', $credentials['csrf_token']);
@@ -76,6 +89,11 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
         return $user;
     }
 
+    /**
+     * @param [type] $credentials
+     * @param UserInterface $user
+     * @return void
+     */
     public function checkCredentials($credentials, UserInterface $user)
     {
         return $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
@@ -83,12 +101,21 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
 
     /**
      * Used to upgrade (rehash) the user's password automatically over time.
+     *
+     * @param [type] $credentials
+     * @return string|null
      */
     public function getPassword($credentials): ?string
     {
         return $credentials['password'];
     }
 
+    /**
+     * @param Request $request
+     * @param TokenInterface $token
+     * @param [type] $providerKey
+     * @return void
+     */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
@@ -99,6 +126,9 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
         //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 
+    /**
+     * @return void
+     */
     protected function getLoginUrl()
     {
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);

@@ -59,7 +59,8 @@ class UserVoter extends Voter
     }
 
     /**
-     * @param Task $task
+     * @param User $user
+     * @return boolean
      */
     private function canView(User $user): bool
     {
@@ -67,9 +68,8 @@ class UserVoter extends Voter
     }
 
     /**
-     * @param Task $task
-     *
-     * @return bool
+     * @param User $user
+     * @return boolean
      */
     private function canCreate(User $user)
     {
@@ -77,9 +77,8 @@ class UserVoter extends Voter
     }
 
     /**
-     * @param Task $task
-     *
-     * @return bool
+     * @param User $user
+     * @return boolean
      */
     private function canUpdate(User $user)
     {
