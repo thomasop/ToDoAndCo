@@ -1,6 +1,8 @@
-# To-do List
+# Todo and co
 
-Codacy BadgeBuild Status
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/ee45c5e82e914df7974c856c29cbd940)](https://www.codacy.com/gh/thomasop/ToDoAndCo/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=thomasop/ToDoAndCo&amp;utm_campaign=Badge_Grade)
+
+[Build travis](https://travis-ci.com/thomasop/ToDoAndCo.svg?branch=dev)
 
 OpenClassrooms project for "PHP / Symfony" course.
 

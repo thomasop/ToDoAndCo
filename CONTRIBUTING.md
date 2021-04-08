@@ -6,7 +6,7 @@ To contribute follow this guide.
 
 ## Guideline
 
-1 - Install the project following [README.md](https://github.com/thomasop/ToDoAndCo/blob/dev/README.md)
+1 - Install the project following [README.md](https://github.com/thomasop/ToDoAndCo/blob/master/README.md)
 
 2 - Create new branch and work on it
 
