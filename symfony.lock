@@ -14,17 +14,21 @@
     "doctrine/data-fixtures": {
         "version": "1.5.0"
     },
+    "doctrine/deprecations": {
+        "version": "v0.5.3"
+    },
     "doctrine/doctrine-bundle": {
-        "version": "2.0",
+        "version": "2.3",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "master",
-            "version": "2.0",
-            "ref": "40631978d2c4adc9b11220b13eba539b727c36a8"
+            "version": "2.3",
+            "ref": "9777bf185961283a450b6237281132935025fe04"
         },
         "files": [
             "config/packages/doctrine.yaml",
             "config/packages/prod/doctrine.yaml",
+            "config/packages/test/doctrine.yaml",
             "src/Entity/.gitignore",
             "src/Repository/.gitignore"
         ]
@@ -42,12 +46,12 @@
         ]
     },
     "doctrine/doctrine-migrations-bundle": {
-        "version": "2.2",
+        "version": "3.1",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "master",
-            "version": "2.2",
-            "ref": "baaa439e3e3179e69e3da84b671f0a3e4a2f56ad"
+            "version": "3.1",
+            "ref": "ee609429c9ee23e22d6fa5728211768f51ed2818"
         },
         "files": [
             "config/packages/doctrine_migrations.yaml",
@@ -72,6 +76,9 @@
     "liip/test-fixtures-bundle": {
         "version": "1.11.2"
     },
+    "nikic/php-parser": {
+        "version": "v4.10.4"
+    },
     "sensio/framework-extra-bundle": {
         "version": "5.2",
         "recipe": {
@@ -87,6 +94,9 @@
     "symfony/asset": {
         "version": "v4.4.19"
     },
+    "symfony/browser-kit": {
+        "version": "v4.4.20"
+    },
     "symfony/console": {
         "version": "4.4",
         "recipe": {
@@ -101,6 +111,12 @@
         ]
     },
     "symfony/css-selector": {
+        "version": "v4.4.20"
+    },
+    "symfony/deprecation-contracts": {
+        "version": "v2.2.0"
+    },
+    "symfony/dom-crawler": {
         "version": "v4.4.20"
     },
     "symfony/dotenv": {
