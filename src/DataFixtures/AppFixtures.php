@@ -23,11 +23,11 @@ class AppFixtures extends Fixture
         $userTest->setUsername('test');
         $userTest->setRoles(['ROLE_ADMIN']);
         $userTest->setPassword(
-                $this->passwordEncoder->encodePassword(
+            $this->passwordEncoder->encodePassword(
                     $userTest,
                     'Test1234?'
                 )
-            );
+        );
         $userTest->setEmail('mail@gmail.com');
         $manager->persist($userTest);
 

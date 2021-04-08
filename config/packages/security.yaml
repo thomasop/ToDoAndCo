@@ -40,4 +40,6 @@ security:
         ROLE_SUPER_ADMIN: ROLE_ADMIN
     access_control:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/users/, roles: ROLE_ADMIN }
+        - { path: ^/users, roles: ROLE_ADMIN }
+        - { path: ^/tasks/[0-9]+/, roles: [ROLE_USER, ROLE_ADMIN] }
+        - { path: ^/tasks/create, roles: [ROLE_USER, ROLE_ADMIN] }

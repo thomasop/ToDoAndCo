@@ -3,7 +3,6 @@
 namespace App\Tests\Entity;
 
 use App\Entity\Task;
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use PHPUnit\Framework\TestCase;
 
 class TaskTest extends TestCase
@@ -18,7 +17,7 @@ class TaskTest extends TestCase
         $task = new Task();
         $task->setTitle('testtitle');
         $task->setContent('testcontent');
-        $task->setCreatedAt(new \DateTime);
+        $task->setCreatedAt(new \DateTime());
         $this->assertEquals(date('Y-m-d H:i:s'), $task->getCreatedAt()->format('Y-m-d H:i:s'));
         $this->assertEquals('testtitle', $task->getTitle());
         $this->assertEquals('testcontent', $task->getContent());

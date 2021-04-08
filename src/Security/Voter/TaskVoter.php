@@ -4,8 +4,9 @@ namespace App\Security\Voter;
 
 use App\Entity\Task;
 use App\Entity\User;
-use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
 class TaskVoter extends Voter
 {
@@ -13,6 +14,13 @@ class TaskVoter extends Voter
 
     const DELETE = 'delete';
 
+    private $security;
+
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
+    
     /**
      * @param string $attribute
      * @param mixed  $subject
@@ -82,7 +90,7 @@ class TaskVoter extends Voter
     private function canDelete(Task $task, User $user): bool
     {
         if ($user->getRoles() === '["ROLE_ADMIN"]' || $user === $task->getUser()) {
-			return true;
-		}
+            return true;
+        }
     }
 }

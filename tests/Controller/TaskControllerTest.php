@@ -39,6 +39,26 @@ class TaskControllerTest extends WebTestCase
         );
     }
 
+    public function testListDoneAction()
+    {
+        $this->client = static::createClient();
+
+        $this->client = static::createClient();
+        $crawler = $this->client->request('GET', '/login');
+        $form = $crawler->selectButton('Se connecter')->form();
+        $crawler = $this->client->submit($form, [
+            'username' => 'UserAnon',
+            'password' => 'UserAnon',
+        ]);
+        $crawler = $this->client->followRedirect();
+        $this->assertEquals(1, $crawler->filter('h1')->count());
+        $test = $this->client->request('GET', '/tasks/done');
+        static::assertEquals(
+            Response::HTTP_OK,
+            $this->client->getResponse()->getStatusCode()
+        );
+    }
+
     public function testCreateAction()
     {
         $this->client = static::createClient();

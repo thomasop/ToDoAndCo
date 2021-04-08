@@ -9,9 +9,9 @@ class DefaultController extends AbstractController
 {
     /**
      * @Route("/", name="homepage", methods={"GET"})
-     * 
+     *
      * Method - indexAction
-	 * @return Response
+     * @return Response
      */
     public function indexAction()
     {

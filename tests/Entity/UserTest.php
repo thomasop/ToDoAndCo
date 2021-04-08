@@ -2,8 +2,8 @@
 
 namespace App\Tests\Entity;
 
-use App\Entity\User;
 use App\Entity\Task;
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class UserTest extends KernelTestCase
@@ -22,15 +22,17 @@ class UserTest extends KernelTestCase
         $this->assertEquals('testpassword', $user->getPassword());
         $user->setEmail('tdss33@hotmail.com');
         $this->assertEquals('tdss33@hotmail.com', $user->getEmail());
-
-        $taskStub = $this->createMock(Task::class);
-        $user->addTask($taskStub);
-        $collection = $user->getTasks();
-        $this->assertEquals(false, $collection->isEmpty());
-        $user->removeTask($taskStub);
-        $this->assertEquals(true, $collection->isEmpty());
-        //self::bootKernel();
-        //$error = self::$container->get('validator')->validate($user);
-        //$this->assertCount(0, $error);
     }
+
+    public function testRemoveTask()
+	{
+		$user = new User();
+		$task = new Task();
+
+		$user->addTask($task);
+		$this->assertEquals($task, $user->getTasks()[0]);
+
+		$user->removeTask($task);
+		$this->assertEquals([], $user->getTasks()->toArray());
+	}
 }
