@@ -58,8 +58,8 @@ class UserControllerTest extends WebTestCase
 
         $form = $crawler->selectButton('Ajouter')->form();
         $form['user[username]'] = rand(0, 10000).'Testuser';
-        $form['user[password][first]'] = 'Tpassword';
-        $form['user[password][second]'] = 'Tpassword';
+        $form['user[password][first]'] = 'Test1234?';
+        $form['user[password][second]'] = 'Test1234?';
         $form['user[email]'] = rand(0, 10000).'email@gmail.com';
 
         $crawler = $this->client->submit($form);

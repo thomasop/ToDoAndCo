@@ -24,6 +24,12 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 180,
+     *      minMessage = "Votre nom d'utilisateur doit contenir au moins {{ limit }} caractères de long",
+     *      maxMessage = "Votre nom d'utilisateur ne peut pas contenir plus que {{ limit }} caractères"
+     * )
      */
     private $username;
 
@@ -35,11 +41,31 @@ class User implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Assert\NotBlank(
+     *      message = "Vous devez saisir un mot de passe."
+     * )
+     * @Assert\Length(
+     *      min = 8,
+     *      max = 255,
+     *      minMessage = "Votre mot de passe ne peut pas contenir moin que {{ limit }} caractères !",
+     *      maxMessage = "Votre mot de passe ne peut pas contenir plus que {{ limit }} caractères !"
+     * )
+     * @Assert\Regex(
+     *     pattern="#^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).{8,}$#",
+     *     match=true,
+     *     message="Mot de passe incorrect: Une lettre en majuscule, minuscule, un chiffre et caractère speciaux attendu ainsi que 8 caractères minimum!"
+     * )
      */
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=60, unique=true)
+     * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\Length(
+     *      min = 5,
+     *      max = 180,
+     *      minMessage = "Votre adresse email doit contenir au moins {{ limit }} caractères de long",
+     *      maxMessage = "Votre adresse email ne peut pas contenir plus que {{ limit }} caractères"
+     * )
      * @Assert\NotBlank(message="Vous devez saisir une adresse email.")
      * @Assert\Email(message="Le format de l'adresse n'est pas correcte.")
      */

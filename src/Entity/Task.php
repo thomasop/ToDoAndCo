@@ -24,14 +24,26 @@ class Task
     private $createdAt;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", unique=true)
      * @Assert\NotBlank(message="Vous devez saisir un titre.")
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 255,
+     *      minMessage = "Le champ titre doit contenir au moins {{ limit }} caractères de long",
+     *      maxMessage = "Le champ titre ne peut pas contenir plus que {{ limit }} caractères"
+     * )
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
      * @Assert\NotBlank(message="Vous devez saisir du contenu.")
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 2000,
+     *      minMessage = "Le champ contenu doit contenir au moins {{ limit }} caractères de long",
+     *      maxMessage = "Le champ contenu ne peut pas contenir plus que {{ limit }} caractères"
+     * )
      */
     private $content;
 
