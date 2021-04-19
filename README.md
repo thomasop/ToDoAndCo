@@ -1,8 +1,8 @@
 # Todo and co
 
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/ee45c5e82e914df7974c856c29cbd940)](https://www.codacy.com/gh/thomasop/ToDoAndCo/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=thomasop/ToDoAndCo&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/1e157ee5f90245c08f8e53ce525d320c)](https://www.codacy.com/gh/thomasop/ToDoAndCo/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=thomasop/ToDoAndCo&amp;utm_campaign=Badge_Grade)
 
-[Build travis](https://travis-ci.com/thomasop/ToDoAndCo.svg?branch=dev)
+[![Build Status](https://travis-ci.com/thomasop/ToDoAndCo.svg?branch=master)](https://travis-ci.com/thomasop/ToDoAndCo)
 
 OpenClassrooms project for "PHP / Symfony" course.
 
@@ -75,4 +75,4 @@ php bin/phpunit
 
 ### Contributing
 
-To contribute see [CONTRIBUTING.md](https://github.com/thomasop/SnowTricks/blob/master/CONTRIBUTING.md)
+To contribute see [CONTRIBUTING.md](https://github.com/thomasop/ToDoAndCo/blob/master/CONTRIBUTING.md)
