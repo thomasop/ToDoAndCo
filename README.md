@@ -13,9 +13,17 @@ The objective is to improve an existing application build with Symfony 3.1.6 and
 ### Prerequisite
 
 Symfony 4.4
+
 Bootstrap 3.3.7
+
 PHP 7.3 or higher
+
 Download Wamp, Xampp, Mamp or WebHost
+
+MySQL 5.7.30
+
+Apache 2.4.46
+
 composer
 
 ### Clone
@@ -32,7 +40,7 @@ DATABASE_URL=mysql://db_user:db_password@127.0.0.1:3306/db_name
 
 ### Composer
 
-3 - Install composer with composer install and init the projet with composer init in SnowTricks folder
+3 - Install composer with composer install and init the projet with composer init in TodoCo folder
 
 4 - Run composer update to install dependencies
 
