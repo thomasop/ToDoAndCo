@@ -2,7 +2,7 @@
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/1e157ee5f90245c08f8e53ce525d320c)](https://www.codacy.com/gh/thomasop/ToDoAndCo/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=thomasop/ToDoAndCo&amp;utm_campaign=Badge_Grade)
 
-https://app.travis-ci.com/thomasop/ToDoAndCo.svg?branch=master
+[![Build Status](https://app.travis-ci.com/thomasop/ToDoAndCo.svg?branch=master)](https://app.travis-ci.com/thomasop/ToDoAndCo)
 
 OpenClassrooms project for "PHP / Symfony" course.
 
