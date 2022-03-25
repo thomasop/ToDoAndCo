@@ -1,5 +1,6 @@
 # Todo and co
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/30d9c95a644f4102bd4ddc7f9577e8f3)](https://app.codacy.com/gh/thomasop/ToDoAndCo?utm_source=github.com&utm_medium=referral&utm_content=thomasop/ToDoAndCo&utm_campaign=Badge_Grade_Settings)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/1e157ee5f90245c08f8e53ce525d320c)](https://www.codacy.com/gh/thomasop/ToDoAndCo/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=thomasop/ToDoAndCo&amp;utm_campaign=Badge_Grade)
 
 [![Build Status](https://travis-ci.com/thomasop/ToDoAndCo.svg?branch=master)](https://travis-ci.com/thomasop/ToDoAndCo)
